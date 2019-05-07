@@ -1,0 +1,37 @@
+/***
+Scritp SQL para creación de tablas Regiones y Comunas: 
+se recomienda seguir la secuencia de:
+
+1.- Crear la tabla region (con su respectiva columna identity) y alter para la PK.
+2.- Llenar la tabla region (insert into)
+3.- Crear la tabla comuna (con su identity) y alter para PK y FK.
+4.- Hacer la relación de ambas tablas
+5.- Insertar los datos en la tabla comuna
+
+***/
+--Lineas comentadas
+/***
+CREATE TABLE reg_regiones
+(
+reg_id int IDENTITY(1,1) NOT NULL,
+reg_nom varchar(50) NULL
+)
+ALTER TABLE reg_regiones ADD PRIMARY KEY (reg_id);
+
+
+
+CREATE TABLE com_comunas
+(
+reg_id int NOT NULL,
+com_id int IDENTITY(1,1) NOT NULL,
+com_nom varchar(25) Null,
+--CONSTRAINT PK_com_id PRIMARY KEY(com_id)
+CONSTRAINT FK__reg_regi FOREIGN KEY (reg_id) REFERENCES reg_regiones (reg_id)
+)
+ALTER TABLE com_comunas ADD PRIMARY KEY (reg_id, com_id);
+GO
+
+**/
+--drop table com_comunas
+--drop table reg_regiones
+
